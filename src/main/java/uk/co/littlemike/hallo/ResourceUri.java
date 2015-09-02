@@ -1,5 +1,6 @@
 package uk.co.littlemike.hallo;
 
+import uk.co.littlemike.gotcha.Invocation;
 import uk.co.littlemike.gotcha.InvocationCaptor;
 
 import javax.ws.rs.core.UriBuilder;
@@ -19,7 +20,7 @@ public class ResourceUri<R> {
     private ResourceUri(Class<R> resourceClass, UriBuilder baseUri) {
         Resource resource = new Resource(resourceClass);
         if (!resource.isValidResourceClass()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Not a valid ");
         }
 
         resourceUri = resource.uriFromBase(baseUri);
@@ -27,7 +28,8 @@ public class ResourceUri<R> {
     }
 
     public URI forMethod(Consumer<R> methodInvocation) {
-        ResourceMethodInvocation invocation = new ResourceMethodInvocation(invocationCaptor.capture(methodInvocation));
-        return invocation.pathFromBase(resourceUri.clone()).build();
+        Invocation invocation = invocationCaptor.capture(methodInvocation);
+        ResourceMethod method = new ResourceMethod(invocation.getMethod());
+        return method.uriFromArguments(invocation.getArguments(), resourceUri.clone());
     }
 }
