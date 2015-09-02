@@ -1,4 +1,4 @@
-package uk.co.littlemike.hallo;
+package uk.co.littlemike.clearrest;
 
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.PathSegment;

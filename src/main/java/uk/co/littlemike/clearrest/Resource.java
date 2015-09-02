@@ -1,4 +1,4 @@
-package uk.co.littlemike.hallo;
+package uk.co.littlemike.clearrest;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.UriBuilder;
@@ -15,9 +15,14 @@ public class Resource {
 
     public Resource(Class<?> resourceClass) {
         this.resourceClass = resourceClass;
+
+        if (!isValidResourceClass()) {
+            throw new IllegalArgumentException("Not a valid resource class. Class must be annotated with @Path, " +
+                    "or have at least one method annotated with @Path, @GET, @PUT, @POST, @DELETE, @HEAD, @OPTIONS");
+        }
     }
 
-    public boolean isValidResourceClass() {
+    private boolean isValidResourceClass() {
         return isPathAnnotated()
                 || hasResourceMethod();
     }
