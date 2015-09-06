@@ -1,5 +1,5 @@
 plugins {
-    id "uk.co.littlemike.publishing-smorgasbord-plugin" version "0.5"
+    id "uk.co.littlemike.publishing-smorgasbord-plugin" version "0.6"
     id "java"
     id "jacoco"
 }
