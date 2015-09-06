@@ -6,7 +6,7 @@ plugins {
 
 defaultTasks 'build', 'jacocoTestReport', 'publishToMavenLocal'
 
-version = '0.1-SNAPSHOT'
+version = '0.1'
 
 basicPublishing {
     organisation = 'uk.co.littlemike'
