@@ -8,17 +8,16 @@ A library for building type-safe links to JAX-RS resources using Java8 lambdas
 
 ## Benefits
 
-Work resource links in the same way as any other plain old java method!
+Work with resource links in the same way as any other plain old java method!
 
-* Never generate a broken link
-* Search for resource method usages using IDE
-* Freely change between query-params and path-params
-* Change parameter names
-* Refactor method signatures safely using IDE refactoring
+* Search for links to resource methods in your project using IDE "Find usages" as with any other method
+* Safely change between query-params and path-params
+* Safely change parameter names
+* Safely change resource method signatures using IDE refactoring
 
 ## How do I use it?
 
-Annotate your resources with JAX-RS annotations
+Annotate your resources with JAX-RS annotations as usual
 
 ```
 @Path("departments")
@@ -56,3 +55,8 @@ Use ResourceUri to build type-safe links without worrying about the format
     assertThat(employeeUri.toString()).endsWith("/departments/123/employees/456");
 ```
 
+## What's not supported (yet)
+
+* Sub-resources
+* @DefaultValue on primitive types
+* @BeanParam
