@@ -1,34 +1,41 @@
-plugins {
-    id "uk.co.littlemike.publishing-smorgasbord-plugin" version "0.6"
-    id "java"
-    id "jacoco"
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "gradle.plugin.gradle-publishing-smorgasbord-plugin:plugin:0.6"
+    }
 }
 
 defaultTasks 'build', 'jacocoTestReport', 'publishToMavenLocal'
 
-version = '0.1'
+version = '0.2-SNAPSHOT'
 
-basicPublishing {
-    organisation = 'uk.co.littlemike'
-}
+subprojects {
+    apply plugin: "uk.co.littlemike.publishing-smorgasbord-plugin"
+    apply plugin: "java"
+    apply plugin: "jacoco"
 
-repositories {
-    jcenter()
-    maven { url 'https://dl.bintray.com/littlemikedev/maven' }
-}
+    basicPublishing {
+        organisation = 'uk.co.littlemike'
+    }
 
-dependencies {
-    compile 'uk.co.littlemike.gotcha:gotcha:0.2'
-    compile 'javax.ws.rs:jsr311-api:1.1.1'
+    repositories {
+        jcenter()
+        maven { url 'https://dl.bintray.com/littlemikedev/maven' }
+    }
 
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.assertj:assertj-core:3.1.0'
-    testCompile 'org.mockito:mockito-core:1.10.8'
-    testCompile 'com.sun.jersey:jersey-server:1.19'
-}
+    dependencies {
+        testCompile 'junit:junit:4.12'
+        testCompile 'org.assertj:assertj-core:3.1.0'
+        testCompile 'org.mockito:mockito-core:1.10.8'
+    }
 
-jacocoTestReport {
-    reports {
-        xml.enabled true
+    jacocoTestReport {
+        reports {
+            xml.enabled true
+        }
     }
 }
