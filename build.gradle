@@ -11,12 +11,12 @@ buildscript {
 
 defaultTasks 'build', 'jacocoTestReport', 'publishToMavenLocal'
 
-version = '0.2-SNAPSHOT'
-
 subprojects {
     apply plugin: "uk.co.littlemike.publishing-smorgasbord-plugin"
     apply plugin: "java"
     apply plugin: "jacoco"
+
+    version = '0.2-SNAPSHOT'
 
     basicPublishing {
         organisation = 'uk.co.littlemike'
